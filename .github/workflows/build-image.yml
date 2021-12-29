@@ -1,0 +1,21 @@
+name: build-image
+
+on:
+  push: main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Login ACR
+        run: |
+          docker login \
+            -u ${{ secrets.ACR_USERNAME }} \
+            -p ${{ secrets.ACR_PASSWORD }} \
+            registry.cn-shenzhen.aliyuncs.com
+      - name: Build and push image
+        run: make

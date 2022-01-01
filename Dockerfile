@@ -1,5 +1,6 @@
 FROM openjdk:8-jdk
 LABEL maintainer="K8sCat <k8scat@gmail.com>"
+ENV TZ=Asia/Shanghai
 WORKDIR /opt/client
 COPY . .
 RUN ./mvnw install

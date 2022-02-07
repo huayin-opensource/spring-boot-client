@@ -15,29 +15,9 @@ public class ClientApplication {
 		SpringApplication.run(ClientApplication.class, args);
 		log.info("client服务实例 start");
 		// client实例初始化
+		String[] m= {"1","233","21","3","21"};
 		log.info("当前服务实例名称：{}",System.getenv("SERVICE_NAME"));
-		initZkConnection()
-	}
-
-	/**
-	 * 初始化 zk 链接
-	 * @throws Exception
-	 */
-	protected void initZkConnection() throws Exception {
-		RetryPolicy retryPolicy = new RetryForever(1000);
-		List<String> zkAddress = getDasZk(platformServiceConfig.getServiceName(),
-				platformServiceConfig.getBenchmarkEnv());
-
-		String nameSpace = getDasPlatformNameSpace(platformServiceConfig.getServiceEnv());
-		log.info("initZkConnection() zkAddress={}, nameSpace={}", zkAddress, nameSpace);
-		this.curatorFramework = CuratorFrameworkFactory.builder()
-				.connectString(zkAddress.get(0))
-				.retryPolicy(retryPolicy)
-				.sessionTimeoutMs(SESSION_TIME)  // 120s
-				.connectionTimeoutMs(CONNECT_TIMEOUT)  // 100s
-				.namespace(nameSpace)
-				.build();
-		this.curatorFramework.start();
-		this.curatorFramework.blockUntilConnected(10, TimeUnit.SECONDS);
+		log.info("mmmm",m);
 	}
 }
+

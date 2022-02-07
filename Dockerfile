@@ -5,3 +5,4 @@ COPY . .
 RUN ./mvnw install
 EXPOSE 8080
 CMD [ "./mvnw", "spring-boot:run" ]
+ENV SERVICE_NAME=BenchmarkClient SERVICE_TYPE=client
